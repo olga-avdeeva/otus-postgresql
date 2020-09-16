@@ -1,0 +1,38 @@
+2020-09-15 11:32:06.333 UTC [25518] postgres@locks LOG:  process 25518 still waiting for ShareLock on transaction 584 after 200.154 ms
+2020-09-15 11:32:06.333 UTC [25518] postgres@locks DETAIL:  Process holding the lock: 25303. Wait queue: 25518.
+2020-09-15 11:32:06.333 UTC [25518] postgres@locks CONTEXT:  while updating tuple (0,18) in relation "test_locks"
+2020-09-15 11:32:06.333 UTC [25518] postgres@locks STATEMENT:  update test_locks set value = 5000 where id in (2,3);
+2020-09-15 11:32:07.438 UTC [25287] postgres@locks LOG:  process 25287 still waiting for ShareLock on transaction 582 after 200.170 ms
+2020-09-15 11:32:07.438 UTC [25287] postgres@locks DETAIL:  Process holding the lock: 25518. Wait queue: 25287.
+2020-09-15 11:32:07.438 UTC [25287] postgres@locks CONTEXT:  while updating tuple (0,15) in relation "test_locks"
+2020-09-15 11:32:07.438 UTC [25287] postgres@locks STATEMENT:  update test_locks set value = 5000 where id in (1,3);
+2020-09-15 11:32:08.454 UTC [25303] postgres@locks LOG:  process 25303 detected deadlock while waiting for ExclusiveLock on tuple (0,15) of relation 16387 of database 16384 after 200.295 ms
+2020-09-15 11:32:08.454 UTC [25303] postgres@locks DETAIL:  Process holding the lock: 25287. Wait queue: .
+2020-09-15 11:32:08.454 UTC [25303] postgres@locks STATEMENT:  update test_locks set value = 5000 where id in (1,2);
+2020-09-15 11:32:08.454 UTC [25303] postgres@locks ERROR:  deadlock detected
+2020-09-15 11:32:08.454 UTC [25303] postgres@locks DETAIL:  Process 25303 waits for ExclusiveLock on tuple (0,15) of relation 16387 of database 16384; blocked by process 25287.
+        Process 25287 waits for ShareLock on transaction 582; blocked by process 25518.
+        Process 25518 waits for ShareLock on transaction 584; blocked by process 25303.
+        Process 25303: update test_locks set value = 5000 where id in (1,2);
+        Process 25287: update test_locks set value = 5000 where id in (1,3);
+        Process 25518: update test_locks set value = 5000 where id in (2,3);
+2020-09-15 11:32:08.454 UTC [25303] postgres@locks HINT:  See server log for query details.
+2020-09-15 11:32:08.454 UTC [25303] postgres@locks STATEMENT:  update test_locks set value = 5000 where id in (1,2);
+2020-09-15 11:32:08.455 UTC [25518] postgres@locks LOG:  process 25518 acquired ShareLock on transaction 584 after 2322.039 ms
+2020-09-15 11:32:08.455 UTC [25518] postgres@locks CONTEXT:  while updating tuple (0,18) in relation "test_locks"
+2020-09-15 11:32:08.455 UTC [25518] postgres@locks STATEMENT:  update test_locks set value = 5000 where id in (2,3);
+2020-09-15 11:32:08.655 UTC [25518] postgres@locks LOG:  process 25518 detected deadlock while waiting for ShareLock on transaction 583 after 200.225 ms
+2020-09-15 11:32:08.655 UTC [25518] postgres@locks DETAIL:  Process holding the lock: 25287. Wait queue: .
+2020-09-15 11:32:08.655 UTC [25518] postgres@locks CONTEXT:  while updating tuple (0,19) in relation "test_locks"
+2020-09-15 11:32:08.655 UTC [25518] postgres@locks STATEMENT:  update test_locks set value = 5000 where id in (2,3);
+2020-09-15 11:32:08.655 UTC [25518] postgres@locks ERROR:  deadlock detected
+2020-09-15 11:32:08.655 UTC [25518] postgres@locks DETAIL:  Process 25518 waits for ShareLock on transaction 583; blocked by process 25287.
+        Process 25287 waits for ShareLock on transaction 582; blocked by process 25518.
+        Process 25518: update test_locks set value = 5000 where id in (2,3);
+        Process 25287: update test_locks set value = 5000 where id in (1,3);
+2020-09-15 11:32:08.655 UTC [25518] postgres@locks HINT:  See server log for query details.
+2020-09-15 11:32:08.655 UTC [25518] postgres@locks CONTEXT:  while updating tuple (0,19) in relation "test_locks"
+2020-09-15 11:32:08.655 UTC [25518] postgres@locks STATEMENT:  update test_locks set value = 5000 where id in (2,3);
+2020-09-15 11:32:08.655 UTC [25287] postgres@locks LOG:  process 25287 acquired ShareLock on transaction 582 after 1417.546 ms
+2020-09-15 11:32:08.655 UTC [25287] postgres@locks CONTEXT:  while updating tuple (0,15) in relation "test_locks"
+2020-09-15 11:32:08.655 UTC [25287] postgres@locks STATEMENT:  update test_locks set value = 5000 where id in (1,3);

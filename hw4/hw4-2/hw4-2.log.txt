@@ -1,0 +1,21 @@
+2020-09-15 10:52:42.198 UTC [25034] LOG:  database system is ready to accept connections
+2020-09-15 10:52:42.737 UTC [25043] [unknown]@[unknown] LOG:  incomplete startup packet
+2020-09-15 10:58:12.222 UTC [25287] postgres@locks LOG:  process 25287 still waiting for ShareLock on transaction 573 after 200.264 ms
+2020-09-15 10:58:12.222 UTC [25287] postgres@locks DETAIL:  Process holding the lock: 25063. Wait queue: 25287.
+2020-09-15 10:58:12.222 UTC [25287] postgres@locks CONTEXT:  while updating tuple (0,5) in relation "test_locks"
+2020-09-15 10:58:12.222 UTC [25287] postgres@locks STATEMENT:  update test_locks set value = 111 where id = 1;
+2020-09-15 10:58:22.967 UTC [25303] postgres@locks LOG:  process 25303 still waiting for ExclusiveLock on tuple (0,5) of relation 16387 of database 16384 after 200.162 ms
+2020-09-15 10:58:22.967 UTC [25303] postgres@locks DETAIL:  Process holding the lock: 25287. Wait queue: 25303.
+2020-09-15 10:58:22.967 UTC [25303] postgres@locks STATEMENT:  update test_locks set value = 11 where id = 1;
+2020-09-15 10:58:41.228 UTC [25287] postgres@locks LOG:  process 25287 acquired ShareLock on transaction 573 after 29206.449 ms
+2020-09-15 10:58:41.228 UTC [25287] postgres@locks CONTEXT:  while updating tuple (0,5) in relation "test_locks"
+2020-09-15 10:58:41.228 UTC [25287] postgres@locks STATEMENT:  update test_locks set value = 111 where id = 1;
+2020-09-15 10:58:41.229 UTC [25303] postgres@locks LOG:  process 25303 acquired ExclusiveLock on tuple (0,5) of relation 16387 of database 16384 after 18462.198 ms
+2020-09-15 10:58:41.229 UTC [25303] postgres@locks STATEMENT:  update test_locks set value = 11 where id = 1;
+2020-09-15 10:58:41.429 UTC [25303] postgres@locks LOG:  process 25303 still waiting for ShareLock on transaction 574 after 200.163 ms
+2020-09-15 10:58:41.429 UTC [25303] postgres@locks DETAIL:  Process holding the lock: 25287. Wait queue: 25303.
+2020-09-15 10:58:41.429 UTC [25303] postgres@locks CONTEXT:  while rechecking updated tuple (0,7) in relation "test_locks"
+2020-09-15 10:58:41.429 UTC [25303] postgres@locks STATEMENT:  update test_locks set value = 11 where id = 1;
+2020-09-15 10:58:54.224 UTC [25303] postgres@locks LOG:  process 25303 acquired ShareLock on transaction 574 after 12994.878 ms
+2020-09-15 10:58:54.224 UTC [25303] postgres@locks CONTEXT:  while rechecking updated tuple (0,7) in relation "test_locks"
+2020-09-15 10:58:54.224 UTC [25303] postgres@locks STATEMENT:  update test_locks set value = 11 where id = 1;
